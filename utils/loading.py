@@ -1,4 +1,4 @@
-# (c) Joakim Berntsson
+# (c) 2019 Joakim Berntsson
 # Loading of data
 import csv
 import pandas as pd
@@ -6,8 +6,9 @@ import pandas as pd
 import tensorflow as tf
 import numpy as np
 
+
 class Loader:
-    """Loading class"""
+    """Data loading class"""
 
     def __init__(self, filepath):
         self._data = pd.read_csv(filepath, header=0)

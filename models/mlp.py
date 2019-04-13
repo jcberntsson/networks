@@ -1,4 +1,4 @@
-# (c) Joakim Berntsson
+# (c) 2019 Joakim Berntsson
 # MLP module
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, BatchNormalization, Dropout
@@ -55,15 +55,9 @@ class FeedForwardNetwork(tf.keras.Model):
                     intermed = comp(intermed)
         return intermed
 
-    def losses(self):
+    def regularize_loss(self):
         losses = []
         for comp in self._net:
             if hasattr(comp, "losses"):
                 losses += comp.losses
         return tf.add_n(losses) if len(losses) > 0 else 0
-
-    def total_loss(self, targets, logits):
-        losses = tf.losses.absolute_difference(targets, logits)
-        loss_value = tf.reduce_mean(losses)
-        loss_value += self.losses()
-        return loss_value
