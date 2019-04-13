@@ -20,7 +20,12 @@ class Loader:
         self._data = self._data.dropna(subset=[column_name])
         self._data[column_name] = self._data[column_name].apply(func)
 
-    def get_data_split(self, features: list, train_fraction: float, target_name: str = 'target'):
+    def set_features(self, features: list):
+        self._data = self._data[features]
+
+    def get_data_split(self, train_fraction: float, target_name: str = 'target'):
+        features = self._data.columns.difference([target_name])
+
         # Divide into train and test
         train = self._data.sample(frac=train_fraction, random_state=200)
         test = self._data.drop(train.index)

@@ -64,7 +64,7 @@ class Trainer:
             test_losses.append(epoch_test_loss)
 
             # Print progress
-            print("Epoch {:0>2d} - Train[Loss={:.3f}, Metric={:.3f}], Test[Loss={:.3f}, Acc={:.3f}]"\
-                .format(i, epoch_loss, epoch_accuracy, epoch_test_loss, epoch_test_accuarcy))
+            print("Epoch {:0>2d} - Train[Loss={:.3f}, Metric={:.3f}], Test[Loss={:.3f}, Metric={:.3f}]"\
+                .format(i+1, epoch_loss, epoch_accuracy, epoch_test_loss, epoch_test_accuarcy))
 
         return all_losses, all_accuracies, test_losses, test_accuracies
