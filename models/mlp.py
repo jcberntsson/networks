@@ -1,11 +1,16 @@
 # (c) 2019 Joakim Berntsson
-# MLP module
+# Multi layer perception module.
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, BatchNormalization, Dropout
 
 
 class FeedForwardNetwork(tf.keras.Model):
-    """Simple classification network using fully connected layers."""
+    """Feed forward network with support for:
+    * arbitrary number of layers
+    * batch normalization
+    * l2 weight regularizer
+    * dropout.
+    """
 
     def __init__(self, units: list, l2_weight_decay: float = None, 
                  use_bn: bool = False, dropout: float = None,

@@ -1,5 +1,5 @@
 # (c) 2019 Joakim Berntsson
-# Loading of data
+# Loading of data.
 import csv
 import pandas as pd
 
@@ -8,22 +8,33 @@ import numpy as np
 
 
 class Loader:
-    """Data loading class"""
+    """Data loading class with support for:
+    * loading csv files using pandas
+    * data curation
+    * column selection
+    * creating train/test split with normalization.
+    Note that this class only supports continuous values.
+    """
 
     def __init__(self, filepath):
         self._data = pd.read_csv(filepath, header=0)
 
     def get_data(self):
+        """Get the underlying pandas dataframe."""
         return self._data
 
     def apply(self, column_name, func):
+        """Apply a function to a specific column to curate data."""
         self._data = self._data.dropna(subset=[column_name])
         self._data[column_name] = self._data[column_name].apply(func)
 
     def set_features(self, features: list):
+        """Limit the loader to certain columns."""
         self._data = self._data[features]
 
     def get_data_split(self, train_fraction: float, target_name: str = 'target'):
+        """Split the underlying dataframe into train/test sets. Note that
+        the returned objects are TensorSliceDatasets."""
         features = self._data.columns.difference([target_name])
 
         # Divide into train and test
@@ -52,4 +63,5 @@ class Loader:
         return train_dataset, test_dataset
 
     def get_features(self):
+        """Get the features for the data."""
         return self._data.columns

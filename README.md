@@ -1,11 +1,12 @@
 # Networks
 Repository for testing out networks on different datasets.
 
-## Training
-`make run-heart` - Run the heart disease model.
-`make run-fifa` - Run the fifa model.
+## Notebooks
+Both notebooks are still under development. They lack proper data analysis and fine tuned models.
+* Heart disease - model for classifying whether a patient has a heart disease.
+* FIFA - regress the value of a player given a series of statistics.
 
 ## TODO
+- [x] Implement core packages
+- [x] Add python notebooks for the networks
 - [ ] Incorperate Tensorboard
-- [ ] Add python notebooks for actual running networks
-- [ ] Update core packages

@@ -1,10 +1,10 @@
 # (c) 2019 Joakim Berntsson
-# Trainer class
+# Trainer class.
 import tensorflow as tf
 import numpy as np
 
 class Trainer:
-    """Trainer class for tensorflow"""
+    """Trainer class for tensorflow."""
 
     def __init__(self, model, optimizer, train_data, test_data, compute_loss, compute_accuracy):
         self._model = model
@@ -15,6 +15,7 @@ class Trainer:
         self._compute_accuracy = compute_accuracy
 
     def train(self, n_epochs: int, batch_size: int):
+        """Perform training cycles. Returns lists of training and testing metrics and losses."""
         # Progress saving
         all_accuracies = []
         all_losses = []
